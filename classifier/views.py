@@ -7,13 +7,12 @@ from django.conf import settings
 import os
 
 BASE_DIR = settings.BASE_DIR
-class ClassifierAPIView(generics.GenericAPIView):
+class ClassifierAPIView(generics.CreateAPIView):
     serializer_class = ClassifierSerializer
 
     def post(self, request):
-        serializers = self.serializer_class
-
-        if serializers.is_valid():
+        serializers = self.serializer_class(data=request.data)
+        if serializers.is_valid(raise_exception=True):
             wav_file = request.FILES['audio']
             fs = FileSystemStorage()
             fs.save(wav_file.name, wav_file)
