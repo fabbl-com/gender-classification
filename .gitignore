@@ -2,3 +2,4 @@ py3810-venv
 *.env
 *.sqlite3
 uploads/
+local_settings.py
