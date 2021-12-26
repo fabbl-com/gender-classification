@@ -20,5 +20,5 @@ class ClassifierAPIView(generics.CreateAPIView):
             result = classify(abs_path)
             if os.path.exists(abs_path):
                 os.remove(abs_path)
-            return Response({'success': True, 'result': result}, status=status.HTTP_200_OK)
+            return Response({'success': True, 'result': "1: Male" if result==1 else "0: Female"}, status=status.HTTP_200_OK)
         return Response({'success': False, 'message': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
